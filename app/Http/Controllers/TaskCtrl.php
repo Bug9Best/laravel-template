@@ -9,7 +9,10 @@ class TaskCtrl extends Controller
 {
     public function getTasks()
     {
-        $tasks = Task::all();
+        $tasks = Task::query()
+            ->orderBy('id', 'asc')
+            ->get();
+
         return response()->json($tasks);
     }
 
@@ -53,7 +56,6 @@ class TaskCtrl extends Controller
         ]);
 
         $task->update($data);
-
         return response()->json($task);
     }
 
